@@ -1,0 +1,28 @@
+<snippet>
+  <content><![CDATA[
+vector<int> inorder(TreeNode*root){
+	
+	vector<int> ans;
+	if(!root) return ans;
+	stack<TreeNode*> s;
+
+	while(true){
+		if(root!=NULL){
+			s.push(root);
+			root = root->left;
+		}else{
+			if(s.empty()) return ans;
+			root = s.top();
+        		   s.pop();
+			ans.push_back(root->val);
+			root = root->right;
+		}	
+	}
+	return ans;
+}
+]]></content>
+  <tabTrigger>inorder_itrative</tabTrigger>
+  <description>inorder_itrative</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

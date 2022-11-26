@@ -1,0 +1,31 @@
+<snippet>
+  <content><![CDATA[
+vector<int> bfs(int start, int v, vector<vector<int>>&arr){
+	vector<int> output;
+	queue<int> q;
+	q.push(start);
+	vector<bool> vis(v, false);
+	
+	// For Undirected Graph
+	// Tc: O(V+E)
+	// Sp: O(N)
+	
+	while(!q.empty()){	
+		int node = q.front();
+				   q.pop();
+		output.push_back(node);
+		vis[node] = true;
+		for(int it: arr[node]){
+			if(!vis[it]){
+				q.push(it);
+			}
+		}
+	}
+	return output;
+}
+]]></content>
+  <tabTrigger>bfs</tabTrigger>
+  <description>bfs</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

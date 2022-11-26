@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+void dfs(int node, vector<bool> &vis, vector<vector<int>> &arr, stack<int> &s){
+	vis[node] = 1;
+	for(int it: arr[node]) if(!vis[it]) dfs(it, vis, arr, s);	
+	s.push(node);
+}
+
+stack<int> dfstoposort(int v, vector<vector<int>> &arr){
+	vector<bool> vis(v,0);
+	stack<int> s;
+	// For Directed Graph
+	for(int i = 0 ; i < v; i++){
+		if(!vis[i]){
+			dfs(i, vis, arr, s);
+		}
+	}
+	// Tc: O(V+E)
+	return s;
+}
+]]></content>
+  <tabTrigger>dfstoposort</tabTrigger>
+  <description>dfstoposort</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+
+int n;
+cin>>n;
+vector<int> arr(n);
+f(i,0,n,1) cin>>arr[i];
+
+	
+]]></content>
+  <tabTrigger>takeinput</tabTrigger>
+  <description>takeinput</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

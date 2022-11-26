@@ -1,0 +1,28 @@
+<snippet>
+  <content><![CDATA[
+bool sliding_window(vector<int>&a, int target){
+	
+	int n = a.size();
+	int sum = 0;
+	int i,j; 
+	i=j=0;
+	// Tc:O(N)
+	while(i<n){
+	
+		sum+=a[i];
+		while(j<i and sum>target)
+			sum-=a[j++];
+	
+		if(sum==target)
+			return true;
+		i++;
+	}
+	
+	return false;
+}
+]]></content>
+  <tabTrigger>sliding_window_DynamicSize</tabTrigger>
+  <description>sliding_window_DynamicSize</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

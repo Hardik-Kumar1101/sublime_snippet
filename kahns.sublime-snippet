@@ -1,0 +1,40 @@
+<snippet>
+  <content><![CDATA[
+vector<int> bfstoposort(int start, int v, vector<vector<int>> &arr){
+
+	queue<int> q;
+	vector<int> indegree(v,0);
+	vector<int> ans;
+	//For Directed Graph
+
+	// count indegree of each node
+	for(int i = 0 ; i < v; i++){
+		for(int it: arr[i])
+			indegree[it]++;
+	}
+
+	// fill queue which has 0 indegree
+	for(int i = 0 ; i < v; i++){
+		if(indegree[i]==0)
+			q.push(i);
+	}
+
+	while(!q.empty()){
+		int node = q.front();
+				   q.pop();
+		ans.push_back(node);
+		for(int it: arr[node]){
+			indegree[it]--;
+			if(indegree[it]==0){
+				q.push(it);
+			}
+		}
+	}
+	return ans;
+}
+]]></content>
+  <tabTrigger>kahns</tabTrigger>
+  <description>kahns</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

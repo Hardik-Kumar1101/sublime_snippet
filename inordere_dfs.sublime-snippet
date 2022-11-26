@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+void inorder(TreeNode* root, vector<int> &a){
+	if(!root) return;
+	//Tc:O(height)
+	inorder(root->left, a);
+	a.push_back(root->val);
+	inorder(root->right, a);
+}
+]]></content>
+  <tabTrigger>inorder_dfs</tabTrigger>
+  <description>inorder_dfs</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

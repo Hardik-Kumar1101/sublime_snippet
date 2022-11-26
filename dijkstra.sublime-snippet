@@ -1,0 +1,36 @@
+<snippet>
+  <content><![CDATA[
+vector<int> dijkstra(int start, int v, vector<vector<vector<int>>> &arr){
+	
+	//Min Heap used
+	priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+	vector<int> dist(v, INT_MAX);
+	dist[start] = 0;
+	pq.push({0,start}); // {weigth, node}
+	// For Undirected or Directed Graph
+	// Tc:O(E+log(V))
+	// Sp:O(N)
+	while(!pq.empty()){
+		int dis = pq.top().first;
+		int node = pq.top().second;
+				   pq.pop();
+		
+		for(auto it: arr[node]){
+		
+			int EdgeWeight = it[1];
+			int AdjNode = it[0];
+
+			if(dis+EdgeWeight < dist[AdjNode]){
+				dist[AdjNode] = dis+EdgeWeight;
+				pq.push({dist[AdjNode], AdjNode});
+			}
+		}
+	}
+	return dist;
+}
+]]></content>
+  <tabTrigger>dijkstra</tabTrigger>
+  <description>dijkstra</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

@@ -1,0 +1,24 @@
+<snippet>
+  <content><![CDATA[
+vector<int> preorder(TreeNode* root){
+	vector<int> ans;
+	if(!root) return ans;
+	stack<TreeNode*> s;
+	while(!s.empty()){
+		TreeNode* node = s.top();
+						 s.pop();
+		ans.push_back(node->val);
+
+		if(node->left)
+			s.push(node->left);
+		if(node->right)
+			s.push(node->right);
+	}
+	return ans;
+}
+]]></content>
+  <tabTrigger>preorder_itrative</tabTrigger>
+  <description>preorder_itrative</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+vector<>;
+]]></content>
+  <tabTrigger>vector</tabTrigger>
+  <description>vector</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

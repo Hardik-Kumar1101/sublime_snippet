@@ -1,0 +1,81 @@
+<snippet>
+  <content><![CDATA[
+int RabinKarpAlgo(string source, string target){
+    
+    int N = 1e8+7;
+    int MOD = 1e9+7;
+    
+    int s_size = source.size();
+    int t_size = target.size();
+
+    vector<long long > power(N, 0); power[0] = 1;
+    for(int i = 1; i < N; i++)
+        power[i] = (power[i-1]*31)%MOD; 
+
+    long long target_code = 0;
+    for(int i = 0; i < t_size; i++)
+    target_code = (target_code + power[i]*(target[i]-'a'+1))%MOD;
+
+    vector<long long> hash(s_size+1, 0);
+    for(int i = 0; i < s_size; i++) 
+    hash[i+1] = (hash[i] + power[i]*(source[i]-'a'+1))%MOD;
+
+    for (int i = 0; (i+t_size-1)< s_size; ++i)
+    {
+        long long curnt_hash = (hash[i+t_size] - hash[i] + MOD)%MOD;
+
+        if(curnt_hash == (target_code * power[i])%MOD){
+            return i;
+        } 
+    }
+    return -1;
+}
+
+
+#define d 256
+const int q=101;
+
+void RBSearch(string text,string ptrn)
+{
+    int n = text.length();
+    int m = ptrn.length();
+
+    //compute (d^(m-1))%q
+    int h=1;
+    for(int i=0;i<m-1;i++)
+        h=(h*d)%q;
+    
+    // compute p and t
+    int p=0,t=0;
+    for(int i=0;i<m;i++)
+    {
+        p=(p*d+ptrn[i])%q;
+        t=(t*d+text[i])%q;
+    }
+    for(int i=0;i<=(n-m);i++)
+    {
+        //check for hit
+        if(p==t)
+        {
+            bool flag=true;
+            for(int j=0;j<m;j++)
+                if(text[i+j]!=ptrn[j])
+                    {flag=false;break;}
+
+            if(flag==true)
+                cout<<i<<" "<<ptrn;
+        }
+        if(i<(n-m))
+        {
+            t = ((d*(t-text[i]*h))+text[i+m])%q;
+            if(t<0)
+                t=t+q;
+        }
+    }
+}
+]]></content>
+  <tabTrigger>rabinKarpAlgo</tabTrigger>
+  <description>rabinKarpAlgo</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

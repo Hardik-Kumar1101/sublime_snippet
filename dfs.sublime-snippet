@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+void dfs(int node, vector<bool> &vis, vector<vector<int>> &arr, vector<int> &result){
+	//For Undirected Graph
+	vis[node] = 1;
+	result.push_back(node);
+	for(int it: arr[node])
+		if(!vis[it])
+			dfs(it, vis, arr, result);
+}
+]]></content>
+  <tabTrigger>dfs</tabTrigger>
+  <description>dfs</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

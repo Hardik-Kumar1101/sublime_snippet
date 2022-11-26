@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+vector<int> preorder(TreeNode* root){
+	vector<int> ans;
+	if(!root) return ans;
+	
+	while(root){	
+
+		if(root->left == NULL){
+			ans.push_back(root->val);
+			root = root->right;
+		
+		}else{
+		
+			TreeNode* node = root->left;
+			while(node->right and node->right!=root){
+				node = node->right;
+			}
+
+			if(node->right==root){
+				node->right = NULL;
+				root = root->right;
+			}else{
+				ans.push_back(root->val);
+				node->right = root;
+				root = root->left;
+			}
+		}
+
+	}
+	return ans;
+}
+]]></content>
+  <tabTrigger>preorder_morris</tabTrigger>
+  <description>preorder_morris</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

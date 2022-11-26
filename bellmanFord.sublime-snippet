@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+vector<int> bellman_ford(int start, int v, vector<vector<int>>&edges){
+	int scale = 1e8;
+	vector<int> dist(v, scale);
+	dist[start] = 0;
+	// For Undirected or Directed Graph
+	// Tc:O(E*V)
+	// Sp:O(E)
+	for(int i = 0; i < v-1; i++){
+		for(auto it: edges){
+			int u = it[0];
+			int v = it[1];
+			int w = it[2];
+			if(dist[u] != scale and dist[u] + w < dist[v]){
+				dist[v] = dist[u] + w;
+			}
+		}
+	}
+	
+	for(auto it: edges){
+		int u = it[0];
+		int v = it[1];
+		int w = it[2];
+		if(dist[u] != scale and dist[u] + w < dist[v]){
+			cout<<"Graph has negative cycle\n";
+			return {};
+		}
+	}
+	
+	return dist;
+}
+]]></content>
+  <tabTrigger>bellmanFord</tabTrigger>
+  <description>bellmanFord</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

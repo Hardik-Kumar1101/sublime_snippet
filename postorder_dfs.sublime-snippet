@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+void postorder(TreeNode* root, vector<int> &a){
+	if(!root) return;
+	//Tc:O(height)
+	postorder(root->left, a);
+	postorder(root->right, a);
+	a.push_back(root->val);
+}
+]]></content>
+  <tabTrigger>postorder_dfs</tabTrigger>
+  <description>postorder_dfs</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

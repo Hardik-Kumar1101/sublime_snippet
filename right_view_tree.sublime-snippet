@@ -1,0 +1,16 @@
+<snippet>
+  <content><![CDATA[
+vector<int> right_view(TreeNode* root){
+	vector<int> view;
+	whlie(root){
+		view.push_back(root->val);
+		root = root->right?root->right:root->left;
+	}
+	return view;
+}
+]]></content>
+  <tabTrigger>right_view_tree</tabTrigger>
+  <description>right_view_tree</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

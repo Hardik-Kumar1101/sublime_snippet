@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+vector<int> prostorder(TreeNode* root){
+	vector<int> ans;
+	if(!root) return ans;
+	
+	stack<TreeNode*> s;
+	while(root!=NULL || !s.empty()){
+
+		if(root){
+			s.push(root);
+			root = root->left;
+		
+		}else{
+			TreeNode* node = s.top()->right;
+			if(node==NULL){
+				node = s.top();
+					   s.pop();
+				ans.push_back(node->val);
+				while(!s.empty() and node == s.top()->right){
+					node = s.top();
+					       s.pop();
+					ans.push_back(node->val);
+				}
+			}else{
+				root = node;
+			}
+		}
+	}
+	return ans;
+}
+
+]]></content>
+  <tabTrigger>postorder_itrative</tabTrigger>
+  <description>postorder_itrative</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

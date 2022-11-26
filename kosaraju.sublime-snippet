@@ -1,0 +1,62 @@
+<snippet>
+  <content><![CDATA[
+class Kosaraju
+{
+private:
+	void dfs(int node, vector<bool> &vis, stack<int> &s, vector<vector<int>> &arr){
+		vis[node] = true;
+		for(int child: arr[node]){
+			if(!vis[child]){
+				dfs(child, vis, s, arr);
+			}
+		}
+		s.push(node);
+	}
+	stack<int> TopoSort(int n, vector<vector<int>> &arr){
+		vector<bool> vis(n,false);
+		stack<int> s;
+		
+		for(int node = 0 ; node < n; node++){
+			if(!vis[node]){
+				dfs(node, vis, s, arr);
+			}
+		}
+		return s;
+	}
+	void normal_dfs(int node, vector<bool> &vis, vector<vector<int>>&arr){
+		vis[node] = true;
+		for(int it: arr[node]){
+			if(!vis[it]){
+				normal_dfs(it, vis, arr);
+			}
+		}
+	}
+public:
+	int KosarajuAlgo(int v, vector<vector<int>> &arr){
+		stack<int> s = TopoSort(v,arr);
+		vector<vector<int>> transpose_graph(v); // reverse the direction of edges
+
+		for (int i = 0; i < v; ++i){
+			for(int it: arr[i])
+				transpose_graph[it].push_back(i);
+		}
+
+		int StronglyConnectedComponent = 0;
+		vector<bool> vis(v, false);
+		while(!s.empty()){
+			int node = s.top(); s.pop();
+			if(!vis[node]){
+				normal_dfs(node, vis, transpose_graph);
+				StronglyConnectedComponent++;
+			}
+
+		}
+		return StronglyConnectedComponent;
+	}
+};
+]]></content>
+  <tabTrigger>kosaraju</tabTrigger>
+  <description>kosaraju</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

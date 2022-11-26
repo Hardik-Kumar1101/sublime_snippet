@@ -1,0 +1,36 @@
+<snippet>
+  <content><![CDATA[
+int Minimum_spanning_tree(int v, vector<vector<vector<int>>> &adj){
+	//Min Heap used
+	priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+	vector<int> vis(v,0);
+	int weight_sum = 0;
+
+	//For Undirected Graph 
+	pq.push({0,0}); //{weight, node}
+
+	while(!pq.empty()){
+		int weight = pq.top().first;
+		int node   = pq.top().second;
+				     pq.pop();
+
+		if(vis[node] == 1) continue;
+		vis[node] = 1;
+		weight_sum += weight;
+
+		for(auto it: adj[node]){
+			int adjNode = it[0];
+			int edw = it[1];
+			if(!vis[adjNode]){
+				pq.push({edw, adjNode});
+			}
+		}
+	}
+	return weight_sum;
+}
+]]></content>
+  <tabTrigger>mst_prims</tabTrigger>
+  <description>mst_prims</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

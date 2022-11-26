@@ -1,0 +1,22 @@
+<snippet>
+  <content><![CDATA[
+bool SearchInBST(TreeNode*root, int target){
+	if(!root) return false;
+	//Tc:O(log(N))
+	while(root){
+		if(root==target)
+			return true;
+		if(root->val>target){
+			root = root->left;
+		}else{
+			root = root->right;
+		}
+	}
+	return false;
+}
+]]></content>
+  <tabTrigger>searchInBST</tabTrigger>
+  <description>searchInBST</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

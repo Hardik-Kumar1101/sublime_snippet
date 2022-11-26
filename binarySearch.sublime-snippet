@@ -1,0 +1,25 @@
+<snippet>
+  <content><![CDATA[
+int binarySearch(vector<int> &arr, int target){
+	int low = 0;
+	int high = arr.size();
+	int mid = low + (high-low)/2;
+	while(low<high){
+		if(arr[mid] == target) return mid;
+	 	
+	 	if(arr[mid]<target){
+	 		low=mid+1;
+	 	}
+	 	else{ 
+	 		high=mid-1;
+	 	}
+	 	mid = low + (high-low)/2;
+	}
+	return -1;
+}
+]]></content>
+  <tabTrigger>binarySearch</tabTrigger>
+  <description>binarySearch</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>

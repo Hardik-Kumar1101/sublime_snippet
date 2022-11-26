@@ -1,0 +1,58 @@
+<snippet>
+  <content><![CDATA[
+vector<int> lps(string &s){
+	int n = s.length(), j=0;
+	vector<int> arr(n, 0);
+
+	f(i, 1, n, 1){
+		
+		int previous = arr[i - 1];
+
+		while(j>0 and s[i] != s[j]) // back until s[i]!=s[j] or j>0 
+			j = arr[j-1];
+
+		if(s[i] == s[j])
+			j++;
+		arr[i] = j;
+
+	}
+
+	return arr;
+}
+
+void KMPAlgorithm(string source, string target){
+	
+	vector<int> arr = lps(target);
+	int pos = 1;
+	int i(0), j(0);
+
+	int source_size = source.size();
+	int target_size = target.size();
+
+	while(i<target_size){
+		
+		if(target[i] == source[j]){
+			j++;
+			i++;
+		}
+		else{
+			if(j!=0)
+				j = arr[j-1];
+			else
+				i++;
+		}
+
+		if(j==target_size){
+			pos = i - target_size;
+			cout<<"Found at index:"<<pos<<endl; 
+		}
+
+	}
+}
+
+]]></content>
+  <tabTrigger>kmpAlgorithm</tabTrigger>
+  <description>kmpAlgorithm</description>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope >source.python</scope > -->
+</snippet>
