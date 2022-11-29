@@ -2,8 +2,8 @@
   <content><![CDATA[
 cout<<
 ]]></content>
-  <tabTrigger>cout</tabTrigger>
-  <description>cout</description>
+  <tabTrigger>cou</tabTrigger>
+  <description>cou</description>
   <!-- Optional: Set a scope to limit where the snippet will trigger -->
   <!-- <scope >source.python</scope > -->
 </snippet>
